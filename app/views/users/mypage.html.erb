@@ -1,0 +1,36 @@
+<%= render 'layouts/user_header' %>
+<div class="wrapper">
+
+  <h1>My Page</h1>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= current_user.name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= current_user.email %>
+  </p>
+
+  <%= link_to 'Edit', edit_user_path(current_user.id) %>
+  <%= link_to 'Back', users_path %>
+  <br>
+  <%= link_to 'グループ作成', new_group_path %>
+  <% if current_user %>
+  <br>
+  <%= link_to 'ログアウト', logout_path, method: :post %>
+  <% end %>
+
+  <br>
+  <strong>所属グループ</strong>
+  <% @groups.each do |group| %>
+  <br>
+    <tr>
+      <td><%= link_to group.name, group %></td>
+      <td><%= group.text %></td>
+    </tr>
+  <% end %>
+</div>
+<footer class="hoge_footer">フッター</footer>

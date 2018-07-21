@@ -1,0 +1,23 @@
+<%= render 'layouts/user_header' %>
+<div class="wrapper">
+
+  <h1>User Page</h1>
+  <p id="notice"><%= notice %></p>
+
+  <p>
+    <strong>Name:</strong>
+    <%= @user.name %>
+  </p>
+
+  <p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+  </p>
+
+  <%= link_to 'Edit', edit_user_path(@user) %> |
+  <%= link_to 'Back', users_path %>
+  <br>
+  <%= link_to 'グループ作成', new_group_path %>
+
+</div>
+<footer class="hoge_footer">フッター</footer>

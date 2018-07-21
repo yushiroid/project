@@ -1,0 +1,19 @@
+<%= render 'layouts/user_header' %>
+
+<h1>All Groups</h1>
+<table>
+  <tr>
+    <th>グループ名</th>
+    <th>活動内容</th>
+  </tr>
+
+  <% @groups.each do |group| %>
+    <tr>
+      <td><%= link_to group.name, group %></td>
+      <td><%= group.text %></td>
+    </tr>
+  <% end %>
+</table>
+<%= link_to 'グループ作成', new_group_path %>
+<br>
+<%= link_to 'ユーザ一覧', users_path %>

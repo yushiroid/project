@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>ホーム</h1>
+  <ul>
+    <li><%= link_to 'ログイン', login_path %></li>
+    <li><%= link_to 'ユーザー新規登録', new_user_path %></li>
+    <% if current_user %>
+    <li><%= link_to 'ログアウト', logout_path, method: :post %></li>
+    <% end %>
+  </ul>
+</div>
