@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :destroy]
-  before_action :correct_user, only: [:edit, :update]
+  skip_before_action :require_login, only: [:new, :create, :edit]
+  before_action :set_user, only: [:show, :destroy, :edit, :update, :mypage]
 
   # GET /users
   # GET /users.json
@@ -49,6 +49,9 @@ class UsersController < ApplicationController
     end
   end
 
+  #Upload Picture
+
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -66,27 +69,17 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      if (params[:id] == session[:user_id])
-        redirect_to(root_path)
-      else
-        @user = User.find(params[:id])
-      end
+      @user = current_user
     end
 
-  private
-    def correct_user
-      if (params[:id] == session[:user_id])
-        @user = current_user
-      else
-        redirect_to(root_path)
-      end
-    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
 
   private
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
     end
+
+
 
 end

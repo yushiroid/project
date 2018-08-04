@@ -24,8 +24,8 @@
           <li><%= link_to 'マイページ', root_path(current_user) %></li>
           <li><%= link_to 'ログアウト', logout_path, method: :post %></li>
         <% else %>
-          <li><%= link_to 'ログイン', new_user_session_path %></li>
-          <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+          <li><%= link_to 'ログイン', login_path %></li>
+          <li><%= link_to 'サインアップ', new_user_path %></li>
         <% end %>
       </ul>
     </div><!-- /.navbar-collapse -->
