@@ -1,0 +1,30 @@
+<!-- Start header -->
+header
+nav class="navbar navbar-default navbar-fixed-top"
+  div class="container-fluid"
+    <!-- Brand and toggle get grouped for better mobile display -->
+    div class="navbar-header"
+      = link_to root_path, class: "navbar-brand" do
+        = image_tag 'logo.png', :size =>'111x47'
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1"
+      ul class="nav navbar-nav navbar-right"
+        li = link_to "ユーザ一覧", users_path
+
+        li class="dropdown"
+          a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+            メニュー
+            span class="caret"
+          ul class="dropdown-menu" role="menu"
+            li = link_to "グループ一覧", groups_path
+        - if current_user
+          li = link_to 'マイページ', root_path(current_user)
+          li = link_to 'ログアウト', logout_path, method: :post
+        - else
+          li = link_to 'ログイン', login_path
+          li = link_to 'サインアップ', new_user_path
+
+    <!-- /.navbar-collapse -->
+  <!-- /.container-fluid -->
+<!-- //END header --></header>

@@ -1,0 +1,16 @@
+= render 'layouts/user_header'
+
+h1 All Groups
+table
+  tr
+    th グループ名
+    th 活動内容
+
+  - @groups.each do |group|
+    tr
+      td = link_to group.name, group
+      td = group.text
+
+= link_to 'グループ作成', new_group_path
+br
+= link_to 'ユーザ一覧', users_path

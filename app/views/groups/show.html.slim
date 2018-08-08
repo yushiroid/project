@@ -1,0 +1,28 @@
+h1 Group
+p
+  strong グループ名：
+  = @group.name
+
+p
+  strong 活動内容：
+  = @group.text
+
+h2 メンバー一覧
+- @group.group_users.each do |group_user|
+
+  p
+    strong メンバー：
+    = group_user.user.name
+
+h2 ユーザ追加
+= form_for( [@group, @group.group_users.build] ) do |f|
+  p
+    = f.label :user_id, "ユーザ名"
+    br
+    = f.text_field :user_id
+
+  p
+    = f.submit
+
+= link_to '編集', edit_group_path(@group)
+= link_to '戻る', groups_path

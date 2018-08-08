@@ -1,0 +1,43 @@
+= render 'layouts/user_header'
+div class="wrapper"
+
+  h1 My Page
+
+  p.id="notice"
+  = notice
+
+  p
+    strong Name:
+    = current_user.name
+    
+
+  p
+    strong Email:
+    = current_user.email
+
+  - if @user.image.url
+    = image_tag @user.image.url
+
+  = link_to 'Edit', edit_user_path(current_user.id)
+  = link_to 'Back', users_path
+
+  br
+
+  = link_to 'グループ作成', new_group_path
+
+  br
+
+  - if current_user
+    = link_to 'ログアウト', logout_path, method: :post
+
+
+  br
+
+  strong 所属グループ
+  - @groups.each do |group|
+    br
+    tr
+      td = link_to group.name, group
+      td = group.text
+
+<footer class="hoge_footer">フッター</footer>
