@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'evaluations/new'
   constraints ->  request { request.session[:user_id].present? } do
     root to: 'users#mypage'
   end
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   post 'logout', to: 'sessions#destroy', as: :logout
 
-  resources :users, :groups
+  resources :users, :groups, :topics
 
   resources :groups do
     resources :group_users

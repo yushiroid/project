@@ -1,0 +1,18 @@
+= render 'layouts/user_header'
+p#notice
+  = notice
+
+h1 Topics
+br
+
+table
+  thead
+    tr
+      th Title
+      th URL
+
+  tbody
+    - @topics.each do |topic|
+      tr
+        td = topic.title
+        <td id="topic-#{topic.id}"><a href=#{topic.url}>#{topic.url}</a></td>

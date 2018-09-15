@@ -68,6 +68,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
+# User Certification
 gem 'sorcery'
 
 gem 'bootstrap-sass'
+
+# OGP scraping
+gem 'nokogiri'
