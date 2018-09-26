@@ -1,0 +1,6 @@
+= form_for :topic, url: { :controller => :topics, action: 'create' } do |f|
+  .field
+    = f.text_field :url, class: 'form-control', required: true
+    = f.hidden_field :user_id, value: current_user.id
+  .actions
+    = f.submit
