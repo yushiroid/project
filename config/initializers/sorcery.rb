@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = []
+Rails.application.config.sorcery.submodules = [:external]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -12,6 +12,27 @@ Rails.application.config.sorcery.configure do |config|
   # Default: `:not_authenticated`
   #
   # config.not_authenticated_action =
+
+
+  config.external_providers = [:twitter, :facebook]
+
+
+  #facebookLOGIN
+  config.facebook.key = "268744150608854"
+  config.facebook.secret = "cbdf33624c9ba4954439279812c57f8f"
+  #config.facebook.callback_url = "http://0.0.0.0:3000/oauth/callback?provider=facebook"
+  config.facebook.callback_url = "https://localhost:3001/oauth/callback?provider=facebook"
+  case Rails.env
+    when "production"
+      config.facebook.callback_url = "https://localhost:3001/oauth/callback?provider=facebook"
+    when "development"
+      config.facebook.callback_url = "https://localhost:3001/oauth/callback?provider=facebook"
+    end
+  config.facebook.user_info_mapping = { email: "email", name: "name" }
+  config.facebook.user_info_path = "me?fields=email,first_name,last_name,name"
+  config.facebook.access_permissions = ["email", "public_profile"]
+  config.facebook.display = "page"
+  config.facebook.api_version = "v2.10"
 
   # When a non logged in user tries to enter a page that requires login, save
   # the URL he wanted to reach, and send him there after login, using 'redirect_back_or_to'.
@@ -196,6 +217,8 @@ Rails.application.config.sorcery.configure do |config|
 
   # --- user config ---
   config.user_config do |user|
+
+    user.authentications_class = Authentication
     # -- core --
     # specify username attributes, for example: [:username, :email].
     # Default: `[:email]`
@@ -366,7 +389,7 @@ Rails.application.config.sorcery.configure do |config|
     # Default: `5 * 60`
     #
     # user.reset_password_time_between_emails =
-    
+
     # access counter to a reset password page attribute name
     # Default: `:access_count_to_reset_password_page`
     #

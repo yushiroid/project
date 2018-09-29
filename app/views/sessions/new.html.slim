@@ -1,8 +1,7 @@
 div class="container"
   div class="row"
-    div class="col-md-4"
-    div class="col-md-4"
-      = form_tag login_path, method: :post do
+    div class="col-md-10"
+      = form_for login_path, method: :post do
         div class="form-group"
           label メールアドレス
           = text_field_tag 'email', nil, class: 'form-control'
@@ -12,4 +11,8 @@ div class="container"
           = password_field_tag 'password', nil, class: 'form-control'
 
         div class="form-group text-center"
-          = submit_tag 'ログインする', class: 'btn btn-primary'
+          = submit_tag 'ログイン', class: 'btn btn-primary'
+
+        = link_to 'Login with Facebook', auth_at_provider_path(provider: :facebook)
+
+iframe src="https://techacademy.jp/magazine/5839" width="100%" height="100%"

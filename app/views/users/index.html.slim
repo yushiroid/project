@@ -18,10 +18,10 @@ table
       tr
         td = user.name
         td = user.email
-        td = link_to 'Show', user
+        td = link_to 'Show', user, remote: true
         td = link_to 'Edit', edit_user_path(user)
         td = link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }
-
+div id="user-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
 br
 = link_to 'New User', new_user_path
 br
