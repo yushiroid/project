@@ -1,0 +1,15 @@
+current directory: /Users/yokomi/Development/stolab/project/vendor/bundler/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+/Users/yokomi/.rbenv/versions/2.5.1/bin/ruby -r ./siteconf20180913-27077-m8ms63.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yokomi/Development/stolab/project/vendor/bundler/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" clean
+
+current directory: /Users/yokomi/Development/stolab/project/vendor/bundler/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR="
+compiling cruby.c
+linking shared-object bindex/cruby.bundle
+
+current directory: /Users/yokomi/Development/stolab/project/vendor/bundler/ruby/2.5.0/gems/bindex-0.5.0/ext/bindex
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 cruby.bundle ./.gem.20180913-27077-4y9e9l/bindex
