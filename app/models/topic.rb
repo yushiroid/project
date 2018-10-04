@@ -5,6 +5,9 @@ class Topic < ApplicationRecord
   attr_accessor :title
   attr_accessor :description
   attr_accessor :image
+  attr_accessor :evaluation
+  attr_accessor :tag_id
+  attr_accessor :tag_list
 
   # topicにいいねする
   # def fav(user)
