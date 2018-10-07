@@ -12,6 +12,16 @@
 
 ActiveRecord::Schema.define(version: 2018_09_19_182810) do
 
+  create_table "authentications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "provider", null: false
+    t.string "uid", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "ui_authentications_01", unique: true
+ActiveRecord::Schema.define(version: 2018_09_15_023226) do
+
+
   create_table "evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "topic_id", null: false
     t.string "user_id", null: false

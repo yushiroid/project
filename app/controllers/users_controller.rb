@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: '更新完了しました.' }
+        format.html { redirect_to root_path, notice: '更新完了しました.' }
         format.json { render :show, status: :ok, location: @user }
         flash[:success] = "ユーザ登録情報更新"
       else
@@ -78,6 +78,10 @@ class UsersController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:name, :email, :password, :password_confirmation, :image)
+    end
+
+    def attr
+      params.require(:user).permit(:email, :password, :password_confirmation, :authentications_attributes)
     end
 
 
