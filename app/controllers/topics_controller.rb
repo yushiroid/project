@@ -1,32 +1,61 @@
 # URLにアクセスするためのライブラリの読み込み
 require 'open-uri'
 class TopicsController < ApplicationController
+  before_action  :set_article_tags_to_gon, only: [:create]
 
   def index
     @topics = Topic.all
-    @topics.each do |topic|
-      scrape(topic)
-    end
+    # @topics.each do |topic|
+    #   scrape(topic)
+    # end
   end
 
   def new
     @topic = Topic.new
   end
 
+  #TODO：ロジック書きすぎ。リファクタする。
   def create
     @topic = Topic.new(topic_params)
+    Topic.transaction do
+      @topic.url = delete_params(@topic.url)
+      @topic.save!
+      Evaluation.transaction do
+        @evaluation = Evaluation.new(evaluation_params)
+        @evaluation.topic_id = @topic.id
+        @evaluation.save!
+        TopicTag.transaction do
+          # @topic_tag = TopicTag.new(topic_tag_params)
+          # @topic_tag.topic_id = @topic.id
+          # @topic_tag.save!
 
-    if @topic.save
-      redirect_to topics_path, notice: '記事を登録しました。'
-    else
-      redirect_to new_topic, notice: '記事を登録できませんでした。'
+          #複数登録（テキストを,で分ける）
+          tag_list = params.require(:topic).permit(:tag_list)[:tag_list].split(",")
+          tag_list.each do |tags|
+            @topic_tag = TopicTag.new(topic_tag_list_params)
+            @topic_tag.topic_id = @topic.id
+            @topic_tag.tag_id = Tag.find_by(name: tags).id
+            @topic_tag.save!
+          end
+        end
+        rescue => e
+          logger.error(e)
+          redirect_to topics_path, notice: 'タグを登録できませんでした。' and return
+      end
+      rescue => e
+        #TODO ここでErrorを作ってTopicの例外処置にrescueさせる
+        logger.error(e)
+        redirect_to topics_path, notice: '評価を登録できませんでした。' and return
     end
+    redirect_to topics_path, notice: '記事と評価とタグを登録しました。'
+    rescue => e
+      logger.error(e)
+      redirect_to topics_path, notice: '記事を登録できませんでした。'
   end
 
   def show
     @topic = Topic.find(params[:id])
     @topics = Topic.all
-    @topic = Topic.new
   end
 end
 
@@ -42,6 +71,33 @@ private
     params.require(:topic).permit(:url, :user_id)
   end
 
+  def evaluation_params
+    params.require(:topic).permit(:user_id, :evaluation)
+  end
+
+  def topic_tag_params
+    params.require(:topic).permit(:user_id,:tag_id)
+  end
+
+  def topic_tag_list_params
+    params.require(:topic).permit(:user_id)
+  end
+
+  # URLのパラメータ削除
+  def delete_params(url)
+    if url.include?("?")
+      reg = /\?/.match(url)
+      return reg.pre_match
+    end
+    return url
+  end
+
+  # タグの予測候補設定
+  def set_article_tags_to_gon
+    gon.article_tags = Tag.all
+  end
+
+  # スクレイピング
   def scrape(topic)
     url = topic.url
     charset = nil

@@ -1,35 +1,47 @@
 <!-- Start header -->
 header
-nav class="navbar.navbar-default.navbar-fixed-top"
-  nav class="container-fluid"
-    <!-- Brand and toggle get grouped for better mobile display -->
-    nav class="navbar-header"
-      = link_to root_path, class: "navbar-brand" do
-        = image_tag 'logo.png', :size =>'111x47'
+  nav.navbar.navbar-default.navbar-fixed-top
+    .container-fluid
+      <!-- Brand and toggle get grouped for better mobile display -->
+      .navbar-header
+        = link_to root_path, class: "navbar-brand" do
+          = image_tag 'logo.png', :size =>'111x47'
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    nav class="collapse.navbar-collapse"
-    nav id="bs-example-navbar-collapse-1"
-      ul.nav.navbar-nav.navbar-right
-        li == render 'topics/new'
-        li
-          button.new-article data-toggle="modal" data-target="#basicModal"
-            span.glyphicon.glyphicon-plus
-        li = link_to "ユーザ一覧", users_path
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        ul.nav.navbar-nav.navbar-right
+          li
+            button#modal-trigger.new-article data-toggle="modal" data-target="#inputForm"
+              span.glyphicon.glyphicon-plus
 
-        li.dropdown
-          a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
-            メニュー
-            span.caret
-          ul.dropdown-menu role="menu"
-            li = link_to "グループ一覧", groups_path
-        - if current_user
-          li = link_to 'マイページ', root_path(current_user)
-          li = link_to 'ログアウト', logout_path, method: :post
-        - else
-          li = link_to 'ログイン', login_path
-          li = link_to 'サインアップ', new_user_path
+          li = link_to "ユーザ一覧", users_path
+
+          li.dropdown
+            a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+              メニュー
+              span.caret
+            ul.dropdown-menu role="menu"
+              li = link_to "グループ一覧", groups_path
+          - if current_user
+            li = link_to 'マイページ', root_path(current_user)
+            li = link_to 'ログアウト', logout_path, method: :post
+          - else
+            li = link_to 'ログイン', login_path
+            li = link_to 'サインアップ', new_user_path
 
     <!-- /.navbar-collapse -->
   <!-- /.container-fluid -->
-<!-- //END header --></header>
+/ モーダル
+#inputForm.modal.fade tabindex="-1"
+  .modal-dialog.modal-lg
+    .modal-content
+      .modal-header
+        button.close type="button" data-dismiss="modal"
+          span aria-hidden='true' &times;
+          span.sr-only ×
+        h4.modal-title 記事登録
+      .modal-body
+        == render 'layouts/new'
+      .modal-footer
+        button.btn.btn-danger type='button' data-dismiss='modal' Close
+<!-- //END header -->

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_19_160934) do
+ActiveRecord::Schema.define(version: 2018_09_19_182810) do
 
   create_table "authentications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id", null: false
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2018_08_19_160934) do
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "ui_authentications_01", unique: true
 ActiveRecord::Schema.define(version: 2018_09_15_023226) do
+
 
   create_table "evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "topic_id", null: false
@@ -44,6 +45,20 @@ ActiveRecord::Schema.define(version: 2018_09_15_023226) do
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "topic_tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "topic_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "topics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
