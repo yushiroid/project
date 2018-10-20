@@ -10,22 +10,25 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  *= require jquery-ui
  */
 
- html {
-   position: relative;
-   min-height: 100%;
- }
+@import 'bootstrap';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
- body {
-   /* フッタと同じ高さに設定 */
-   margin-bottom: 60px;
+html {
+ position: relative;
+ min-height: 100%;
+}
 
-   /* 一番下までスクロールした時の余白 */
-   padding-bottom: 0;
+body {
+ /* フッタと同じ高さに設定 */
+ margin-bottom: 60px;
 
-   padding-top: 20px;
- }
+ /* 一番下までスクロールした時の余白 */
+ padding-bottom: 0;
+
+ padding-top: 20px;
+}

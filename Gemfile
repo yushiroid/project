@@ -71,7 +71,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # User Certification
 gem 'sorcery'
 
-gem 'bootstrap-sass'
 # for Bootstrap4
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.1.1'
@@ -79,7 +78,8 @@ gem 'bootstrap', '~> 4.1.1'
 # OGP scraping
 gem 'nokogiri'
 
-gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'gon'
+
+gem  'font-awesome-sass'

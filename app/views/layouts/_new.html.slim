@@ -3,15 +3,15 @@
     = f.text_field :url, class: 'form-control',placeholder: 'https://stolab.com/' ,pattern: '^http(|s)://[0-9a-zA-Z/#&?%\.\-\+_=]+$', required: true
     span 記事の評価
     a#eva-1
-      span#star-1.glyphicon.glyphicon-star-empty
+      i#star-1.far.fa-star
     a#eva-2
-      span#star-2.glyphicon.glyphicon-star-empty
+      i#star-2.far.fa-star
     a#eva-3
-      span#star-3.glyphicon.glyphicon-star-empty
+      i#star-3.far.fa-star
     a#eva-4
-      span#star-4.glyphicon.glyphicon-star-empty
+      i#star-4.far.fa-star
     a#eva-5
-      span#star-5.glyphicon.glyphicon-star-empty
+      i#star-5.far.fa-star
     = f.hidden_field :evaluation, value: 0, id: 'evaluation'
     = f.hidden_field :user_id, value: current_user.id
     / = f.collection_select :tag_id, Tag.all, :id, :name, { prompt: '選択してください' }, class: 'form-control'
