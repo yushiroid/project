@@ -4,10 +4,10 @@ class TopicsController < ApplicationController
   before_action  :set_article_tags_to_gon, only: [:create]
 
   def index
-    @topics = Topic.all
-    # @topics.each do |topic|
-    #   scrape(topic)
-    # end
+    @topics = Topic.includes(:user)
+    @topics.each do |topic|
+      scrape(topic)
+    end
   end
 
   def new
@@ -55,7 +55,6 @@ class TopicsController < ApplicationController
 
   def show
     @topic = Topic.find(params[:id])
-    @topics = Topic.all
   end
 end
 
@@ -121,7 +120,7 @@ private
     if doc.css('//meta[property="og:description"]/@content').empty?
       # p doc.css('//meta[name$="escription"]/@content').to_s
     else
-      topic.description = doc.css('//meta[property="og:description"]/@content').to_s
+      topic.description = doc.css('//meta[property="og:description"]/@content').to_s.truncate(60)
     end
 
     # image

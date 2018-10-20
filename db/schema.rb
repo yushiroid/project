@@ -19,8 +19,7 @@ ActiveRecord::Schema.define(version: 2018_09_19_182810) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["provider", "uid"], name: "ui_authentications_01", unique: true
-ActiveRecord::Schema.define(version: 2018_09_15_023226) do
-
+  end
 
   create_table "evaluations", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "topic_id", null: false
