@@ -1,15 +1,15 @@
 = render 'layouts/user_header'
-div class="wrapper"
+.wrapper
 
   h1 My Page
 
-  p.id="notice"
+  p#notice
   = notice
 
   p
     strong Name:
     = current_user.name
-    
+
 
   p
     strong Email:
@@ -40,4 +40,4 @@ div class="wrapper"
       td = link_to group.name, group
       td = group.text
 
-<footer class="hoge_footer">フッター</footer>
+footer.hoge_footer フッター

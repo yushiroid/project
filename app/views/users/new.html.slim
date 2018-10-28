@@ -1,11 +1,11 @@
 = render 'layouts/user_header'
 
 h1 New User
-div class="container"
-  div class="row"
-    div class="col-md-4"
+.container
+  .row
+    .col-md-4
       - if @user.errors.any?
-        div id="error_explanation"
+        #error_explanation
           h2 = "#{@user.errors.count}件のエラーがあります"
 
         ul
@@ -13,17 +13,17 @@ div class="container"
             li = msg
 
       = form_for @user, url: { action: 'create' } do |f|
-        div class="form-group"
+        .form-group
           = f.label :name
           = f.text_field :name, class: 'form-control', required: true
-        div class="form-group"
+        .form-group
           = f.label :email
           = f.email_field :email, class: 'form-control', required: true
-        div class="form-group"
+        .form-group
           = f.label :password
           = f.password_field :password, class: 'form-control', required: true
-        div class="form-group"
+        .form-group
           = f.label :password_confirmation
           = f.password_field :password_confirmation, class: 'form-control', required: true
-        div class="form-group text-center"
+        .form-group.text-center
           = f.submit '登録する', class: 'btn btn-primary'

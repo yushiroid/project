@@ -19,8 +19,8 @@ class OauthsController < ApplicationController
         auto_login(@user)
 
         redirect_to root_path, :notice => 'ログインに成功しました'
-      #rescue
-      #  redirect_to root_path, :notice => 'ログインに失敗しました'
+      rescue
+        redirect_to root_path, :notice => 'ログインに失敗しました'
       end
     end
   end

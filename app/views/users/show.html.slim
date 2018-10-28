@@ -1,9 +1,9 @@
 = render 'layouts/user_header'
-div class="wrapper"
+.wrapper
 
   h1 User Page
 
-  p.id="notice"
+  p#notice
   = notice
 
   p
@@ -19,4 +19,4 @@ div class="wrapper"
   br
   = link_to 'グループ作成', new_group_path
 
-footer class="hoge_footer" フッター
+footer.hoge_footer フッター

@@ -1,21 +1,23 @@
 <!-- Start header -->
 header
-  nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  nav.navbar.navbar-expand-md.navbar-light.bg-light
     span.navbar-brand
       = image_tag 'logo.png', :size =>'111x47'
+    button.navbar-toggler type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+      span.navbar-toggler-icon
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      #navbarNav.collapse.navbar-collapse
-        ul.navbar-nav.navbar-right
+      #navbarNavDropdown.collapse.navbar-collapse
+        ul.navbar-nav
           - if current_user
-            li
+            li.nav-item
               button#modal-trigger.new-article data-toggle="modal" data-target="#inputForm"
                 i.fas.fa-plus
 
-          li = link_to "ユーザ一覧", users_path
+          li.nav-item.nav-link = link_to "ユーザ一覧", users_path
 
-          li.nav-item.dropdown
-            a.nav-link.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
+          li.nav-item.dropdown.nav-link
+            a#navbarDropdownMenuLink.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"
               メニュー
               span.caret
             .dropdown-menu role="menu" aria-labelledby="navbarDropdown"
@@ -33,10 +35,11 @@ header
     .modal-dialog.modal-lg
       .modal-content
         .modal-header
+          h5.modal-title 記事登録
           button.close type="button" data-dismiss="modal"
             span aria-hidden='true' &times;
             span.sr-only ×
-          h5.modal-title 記事登録
+
         .modal-body
           == render 'layouts/new'
         .modal-footer

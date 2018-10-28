@@ -1,17 +1,17 @@
 = render 'layouts/user_header'
-div class="container"
-  div class="row"
-    div class="col-md-10"
+.container
+  .row
+    .col-md-10
       = form_for login_path, method: :post do
-        div class="form-group"
+        .form-group
           label メールアドレス
           = text_field_tag 'email', nil, class: 'form-control'
 
-        div class="form-group"
+        .form-group
           label パスワード
           = password_field_tag 'password', nil, class: 'form-control'
 
-        div class="form-group text-center"
+        .form-group.text-center
           = submit_tag 'ログイン', class: 'btn btn-primary'
 
         = link_to 'Login with Facebook', auth_at_provider_path(provider: :facebook)
